@@ -339,9 +339,9 @@ int tsens_tm_probe(struct platform_device *pdev)
 		return rc;
 	}
 
+#ifdef CONFIG_IPC_LOGGING
 	snprintf(tsens_name, sizeof(tsens_name), "tsens_%pa_0",
 					&tmdev->phys_addr_tm);
-#ifdef CONFIG_IPC_LOGGING
 	tmdev->ipc_log0 = ipc_log_context_create(IPC_LOGPAGES,
 							tsens_name, 0);
 	if (!tmdev->ipc_log0)
@@ -366,6 +366,7 @@ int tsens_tm_probe(struct platform_device *pdev)
 		pr_err("%s : unable to create IPC Logging 2 for tsens %pa\n",
 					__func__, &tmdev->phys_addr_tm);
 #endif
+
 	list_add_tail(&tmdev->list, &tsens_device_list);
 	platform_set_drvdata(pdev, tmdev);
 
