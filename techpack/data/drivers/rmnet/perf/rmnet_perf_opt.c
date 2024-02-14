@@ -711,7 +711,6 @@ void rmnet_perf_opt_insert_pkt_in_flow(
 	if (pkt_info->trans_proto == IPPROTO_TCP)
 		flow_node->next_seq += payload_len;
 }
-
 void rmnet_perf_free_hash_table(void)
 {
 	int i;
